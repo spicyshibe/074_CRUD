@@ -81,6 +81,26 @@ app.post('/', async (req, res) => {
 
 //put
 
+app.put('/:id', async (req, res) => {
+    const { id } = req.params;
+    const { nama, nim, kelas} = req.body;
+
+    try {
+        const query = 'UPDATE biodata SET nama = $1, nim = $2, kelas = $3 WHERE id = $4 RETURNING *';
+        const values = [nama, nim, kelas, id];
+        const result = await pool.query(query, values);
+        res.status(200).json({
+            status: 'success',
+            message: 'Data berhasil di anuin';
+            data: result.rows[0]
+        });
+    } catch (error) {
+        res.status(500).json({
+            status: 'error', 
+            message: error.message
+        })
+    }
+})
 
 
 //delete
