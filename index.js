@@ -45,7 +45,7 @@ app.get('/', async (req, res) => {
 
 // turn web server
 app.listen(port, () => {
-    console.log('sistem hidup le. Akses API di postman');
+    console.log('sistem hidup cuyyy. Akses API di postman');
 });
 
 //post
@@ -56,5 +56,3 @@ app.listen(port, () => {
 
 //delete
 
-
-//http://localhost:${port}/api/biodata/
