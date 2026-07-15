@@ -105,3 +105,23 @@ app.put('/:id', async (req, res) => {
 
 //delete
 
+app.delete('/:id', async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const query = 'DELETE FROM biodata WHERE id = $1 RETURNING *';
+        const result = await pool.query(query, [id]);
+
+        res.status(200).json({
+            status: 'success',
+            message: 'Data berhasil anu update',
+            data: result.rows[0]
+        });
+    }
+    catch (error) {
+        res.status(500).json({
+            status: 'error',
+            message: error.message
+        });
+    }
+})
